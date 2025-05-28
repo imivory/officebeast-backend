@@ -2,6 +2,11 @@ import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+export const insertMonsterResultSchema = z.object({});
+export const monsterSchema = z.object({});
+export const monsterResultSchema = z.object({});
+export const monsterWithResultSchema = z.object({});
+
 //
 // 몬스터 (괴수) 테이블
 //
