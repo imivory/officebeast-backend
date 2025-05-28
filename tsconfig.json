@@ -13,13 +13,7 @@
         "@shared/*": ["shared/*"]
       }
     },
-    "include": [
-      "server/**/*",
-      "shared/**/*"
-    ],
-    "exclude": [
-      "dist",
-      "node_modules"
-    ]
+    "include": ["**/*"],
+    "exclude": ["dist", "node_modules"]
   }
   
