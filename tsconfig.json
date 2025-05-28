@@ -8,9 +8,10 @@
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "skipLibCheck": true,
+      "moduleResolution": "node",
       "baseUrl": ".",  
       "paths": {
-        "@shared/*": ["shared/*"]
+        "@shared/*": ["../shared/*"]
       }
     },
     "include": ["**/*"],
