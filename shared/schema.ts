@@ -1,6 +1,6 @@
 import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
-import type { z } from "zod";
+import { z } from "zod";
 
 // 몬스터 타입 정의
 interface MonsterType {
