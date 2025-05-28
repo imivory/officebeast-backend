@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { randomUUID } from "crypto";
@@ -10,7 +10,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await storage.initDemoData();
 
   // Get all questions API
-  app.get("/api/questions", async (req, res) => {
+  app.get("/api/questions", async (req: Request, res: Response) => {
     try {
       const questions = await storage.getQuestions();
       res.json(questions);
@@ -21,7 +21,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get a specific monster API
-  app.get("/api/monsters/:id", async (req, res) => {
+  app.get("/api/monsters/:id", async (req: Request, res: Response) => {
     try {
       const monsterId = parseInt(req.params.id);
       const monster = await storage.getMonster(monsterId);
@@ -38,7 +38,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all monsters API
-  app.get("/api/monsters", async (req, res) => {
+  app.get("/api/monsters", async (req: Request, res: Response) => {
     try {
       const monsters = await storage.getMonsters();
       res.json(monsters);
@@ -49,7 +49,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get monster strategies API
-  app.get("/api/monsters/:id/strategies", async (req, res) => {
+  app.get("/api/monsters/:id/strategies", async (req: Request, res: Response) => {
     try {
       const monsterId = parseInt(req.params.id);
       const strategies = await storage.getMonsterStrategies(monsterId);
@@ -61,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get monster insights API
-  app.get("/api/monsters/:id/insights", async (req, res) => {
+  app.get("/api/monsters/:id/insights", async (req: Request, res: Response) => {
     try {
       const monsterId = parseInt(req.params.id);
       const insights = await storage.getMonsterInsights(monsterId);
@@ -73,7 +73,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Submit user answer API
-  app.post("/api/answers", async (req, res) => {
+  app.post("/api/answers", async (req: Request, res: Response) => {
     try {
       const { sessionId, questionId, answer } = req.body;
 
@@ -99,7 +99,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get result API (simulating result calculation)
-  app.get("/api/results/:sessionId", async (req, res) => {
+  app.get("/api/results/:sessionId", async (req: Request, res: Response) => {
     try {
       const sessionId = req.params.sessionId;
 
@@ -132,7 +132,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get user answers API
-  app.get("/api/answers/:sessionId", async (req, res) => {
+  app.get("/api/answers/:sessionId", async (req: Request, res: Response) => {
     try {
       const sessionId = req.params.sessionId;
       console.log("사용자 답변 조회 요청 수신. 세션 ID:", sessionId);
