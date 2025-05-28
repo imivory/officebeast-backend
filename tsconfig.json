@@ -8,12 +8,9 @@
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "skipLibCheck": true,
-      "baseUrl": ".",  
-      "paths": {
-        "@shared/*": ["../shared/*"]
-      }
+      "baseUrl": "."
     },
-    "include": ["server/**/*", "shared/**/*"],
+    "include": ["*.ts", "shared/**/*", "logic/**/*", "@types/**/*"],
     "exclude": ["node_modules", "dist"]
   }
   
