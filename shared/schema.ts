@@ -71,8 +71,11 @@ export const insertUserAnswerSchema = createInsertSchema(userAnswers).omit({ id:
 //
 // 타입 추론 (drizzle 기준)
 //
-export type Monster = typeof monsters.$inferSelect;
 export type InsertMonster = z.infer<typeof insertMonsterSchema>;
+export type InsertMonsterResult = z.infer<typeof insertMonsterResultSchema>;
+export type Monster = z.infer<typeof monsterSchema>;
+export type MonsterResult = z.infer<typeof monsterResultSchema>;
+export type MonsterWithResult = z.infer<typeof monsterWithResultSchema>;
 
 export type Strategy = typeof strategies.$inferSelect;
 export type InsertStrategy = z.infer<typeof insertStrategySchema>;

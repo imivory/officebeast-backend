@@ -1,4 +1,4 @@
-import { UserAnswer, Question, Monster } from "@shared/schema";
+import { UserAnswer, Question, Monster } from "./schema";
 
 export function calculateResult(
   answers: UserAnswer[],
