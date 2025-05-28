@@ -2,10 +2,30 @@ import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const insertMonsterResultSchema = z.object({});
-export const monsterSchema = z.object({});
-export const monsterResultSchema = z.object({});
-export const monsterWithResultSchema = z.object({});
+// 몬스터 타입 정의
+interface MonsterType {
+  id: number;
+  name: string;
+  emoji: string;
+  description: string;
+  traits: string;
+  phrase: string;
+  empathyLevel: number;
+  fatigueLevel: number;
+  types: string[];
+}
+
+// 커스텀 타입 정의
+type Infer<T> = T extends { _type: infer U } ? U : never;
+
+// 몬스터 스키마 정의
+const monsterSchema = {
+  _type: {} as MonsterType
+} as const;
+
+export const insertMonsterResultSchema = monsterSchema;
+export const monsterResultSchema = monsterSchema;
+export const monsterWithResultSchema = monsterSchema;
 
 //
 // 몬스터 (괴수) 테이블
@@ -76,21 +96,21 @@ export const insertUserAnswerSchema = createInsertSchema(userAnswers).omit({ id:
 //
 // 타입 추론 (drizzle 기준)
 //
-export type InsertMonster = z.infer<typeof insertMonsterSchema>;
-export type InsertMonsterResult = z.infer<typeof insertMonsterResultSchema>;
-export type Monster = z.infer<typeof monsterSchema>;
-export type MonsterResult = z.infer<typeof monsterResultSchema>;
-export type MonsterWithResult = z.infer<typeof monsterWithResultSchema>;
+export type InsertMonster = Infer<typeof insertMonsterSchema>;
+export type InsertMonsterResult = Infer<typeof insertMonsterResultSchema>;
+export type Monster = Infer<typeof monsterSchema>;
+export type MonsterResult = Infer<typeof monsterResultSchema>;
+export type MonsterWithResult = Infer<typeof monsterWithResultSchema>;
 
 export type Strategy = typeof strategies.$inferSelect;
-export type InsertStrategy = z.infer<typeof insertStrategySchema>;
+export type InsertStrategy = Infer<typeof insertStrategySchema>;
 
 export type MonsterInsight = typeof monsterInsights.$inferSelect;
-export type InsertMonsterInsight = z.infer<typeof insertMonsterInsightSchema>;
+export type InsertMonsterInsight = Infer<typeof insertMonsterInsightSchema>;
 
 export type Question = typeof questions.$inferSelect;
-export type InsertQuestion = z.infer<typeof insertQuestionSchema>;
+export type InsertQuestion = Infer<typeof insertQuestionSchema>;
 
 export type UserAnswer = typeof userAnswers.$inferSelect;
-export type InsertUserAnswer = z.infer<typeof insertUserAnswerSchema>;
+export type InsertUserAnswer = Infer<typeof insertUserAnswerSchema>;
 console.log("🔥 몬스터 데이터 확인:", monsters);
